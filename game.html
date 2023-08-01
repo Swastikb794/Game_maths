@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C Program Output</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #output-container {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        input[type="text"] {
+            width: 100px;
+            margin: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .magic-number {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>C Program Output</h1>
+    <div id="input-container">
+        <label for="number1">Enter your 1st 5-digit number:</label>
+        <input type="text" id="number1" maxlength="5" oninput="calculateAndDisplayOutput()" /><br>
+        <label for="number2">Enter your 2nd 5-digit number:</label>
+        <input type="text" id="number2" maxlength="5" oninput="calculateAndDisplayOutput()" /><br>
+        <label for="number3">Enter your 4th 5-digit number:</label>
+        <input type="text" id="number3" maxlength="5" oninput="calculateAndDisplayOutput()" /><br>
+    </div>
+
+    <div id="output-container">
+        <pre id="output">
+            <!-- Output will be displayed here -->
+        </pre>
+    </div>
+
+    <script>
+        function calculateAndDisplayOutput() {
+            // Get user input values
+            const number1 = document.getElementById("number1").value;
+            const number2 = document.getElementById("number2").value;
+            const number3 = document.getElementById("number3").value;
+
+            // Convert input strings to integers
+            const digits1 = number1.split("").map(Number);
+            const digits2 = number2.split("").map(Number);
+            const digits4 = number3.split("").map(Number);
+
+            // Perform calculations similar to the C code
+            let outputText = `Your Number is : ${digits1.join(" ")}\n`;
+            for (let i = 0; i < 4; i++) {
+                digits1[i] += 2;
+            }
+            const magicalNumber = `2${digits1.join("")}`;
+            outputText += `The Magical answer for your number is : <strong class="magic-number">${magicalNumber}</strong>\nRemember your magical number!!!!\n`;
+
+            let digits3 = [];
+            for (let i = 0; i < 5; i++) {
+                digits3[i] = 10 - digits2[i];
+            }
+            outputText += `Your 3rd 5-digit number is : ${digits3.join("")}\n`;
+
+            let digits5 = [];
+            for (let i = 0; i < 5; i++) {
+                digits5[i] = 10 - digits4[i];
+            }
+            outputText += `Your 5th 5-digit number is: ${digits5.join("")}\n`;
+
+            outputText += "Magic is that the magical number that I gave is same as the sum of all the five 5-digit numbers: Check yourself\n";
+
+            // Display the output
+            document.getElementById("output").innerHTML = outputText;
+        }
+    </script>
+</body>
+</html>
